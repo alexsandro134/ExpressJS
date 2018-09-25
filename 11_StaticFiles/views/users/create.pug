@@ -1,0 +1,17 @@
+extends ../layouts/common.pug
+
+block content
+    ul(class="nav nav-pills m-2")   
+        li(class="nav-item")
+            a(class="nav-link",href="/") Homepage
+        li(class="nav-item")
+            a(class="nav-link",href="/users") User List
+        li(class="nav-item")
+            a(class="nav-link active",href="/users/create") Create New User
+    h1 Create user
+
+    form(action="/users/create", method="POST")
+        label Name
+        input(name="name" ,type="text")
+
+        button Create

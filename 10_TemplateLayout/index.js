@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 
 var userRoute = require('./routes/user.routes');
 
-var port = 4000;
+var port = 5000;
 
 var app = express();
 
@@ -20,6 +20,7 @@ app.get('/', function (req, res) {
 });
 
 app.use('/users', userRoute);
+
 
 app.listen(port, function () {
     console.log('Server is listening from port ' + port)

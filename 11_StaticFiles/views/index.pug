@@ -1,0 +1,15 @@
+extends ./layouts/common.pug
+
+block content
+    ul(class="nav nav-pills m-2")
+        li(class="nav-item")
+            a(class="nav-link active",href="/") Homepage
+        li(class="nav-item")
+            a(class="nav-link",href="/users") User List
+        li(class="nav-item")
+            a(class="nav-link",href="/users/create") Create New User
+
+    h1 Hello #{name}
+    a(href="/users") User List
+
+    img(src="/images/logo.PNG")
