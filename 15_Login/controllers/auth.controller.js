@@ -13,7 +13,7 @@ module.exports.postLogin = function (req, res) {
     }).value();
 
     if (!user) {
-        res.render('/auth/login.pug', {
+        res.render('auth/login.pug', {
             errors: [
                 'User does not exist.'
             ],
@@ -25,7 +25,7 @@ module.exports.postLogin = function (req, res) {
     var password = req.body.password;
     var hashedPassword = md5(password);
     if (user.password !== hashedPassword) {
-        res.render('/auth/login.pug', {
+        res.render('auth/login.pug', {
             errors: [
                 'Wrong password'
             ],
