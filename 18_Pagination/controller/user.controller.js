@@ -1,8 +1,18 @@
 var db = require('../db');
 
 module.exports.getUsers = function (req, res) {
+
+    var page = parseInt(req.query.page) || 1;
+    var perPage = 8;
+
+    var start = (page - 1) * perPage;
+    var end = page * perPage;
+
+    var drop = (page - 1) * perPage;
+
     res.render('show.pug', {
-        users: db.get('data').value()
+        // users: db.get('data').value().slice(start, end)
+        users: db.get('data').drop(drop).take(perPage).value()
     });
 };
 

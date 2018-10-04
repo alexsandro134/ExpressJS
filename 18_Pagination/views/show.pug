@@ -4,11 +4,12 @@ block content
     .container
         h1 Show User
         
-        div.d-flex.justify-content-center
+        div.row
             each user in users
-                div
-                    span= user.name
+                .col.d-flex.flex-column.m-1.p-3
                     img(src=user.image)
+                    label= user.name
+                    span= user.description
                     a.btn.btn-primary(href='/users/' + user.id) View
 
         //- table.table
