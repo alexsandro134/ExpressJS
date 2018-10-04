@@ -1,13 +1,26 @@
-extends ./layouts/commons.pug
+extends ./layouts/commons
 
 block content
     .container
         h1 Show User
         
-        ul(class="list-group")
+        div.d-flex.justify-content-center
             each user in users
-                li(class="list-group-item")
+                div
                     span= user.name
-                    span &nbsp;
                     img(src=user.image)
-                    button(type="button",class="btn btn-primary",href='/users/' + user.id) View
+                    a.btn.btn-primary(href='/users/' + user.id) View
+
+        //- table.table
+        //-     tr
+        //-         th Name
+        //-         th Image
+        //-         th Actions
+
+        //-     each user in users
+        //-         tr
+        //-             td= user.name
+        //-             td
+        //-                 img(src=user.image)
+        //-             td
+        //-                 a.btn.btn-primary(href='/users/' + user.id) View

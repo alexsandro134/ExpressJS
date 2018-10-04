@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 
 app.get('/users', controller.getUsers);
 
-app.get('/user/:id', controller.getDetailUser);
+app.get('/users/:id', controller.getDetailUser);
 
 app.listen(port, function () {
     console.log('Server is running with ' + port);
