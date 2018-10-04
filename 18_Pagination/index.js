@@ -20,16 +20,7 @@ app.get('/', function (req, res) {
 
 app.get('/users', controller.getUsers);
 
-app.get('/user/:id', function(req, res) {
-    // params
-    var id = req.params.id;
-
-    var user = db.get('users').find({ id: id});
-
-    res.render('detailUser.pug', {
-        user: user
-    });
-});
+app.get('/user/:id', controller.getDetailUser);
 
 app.listen(port, function () {
     console.log('Server is running with ' + port);

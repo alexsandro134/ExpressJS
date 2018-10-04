@@ -1,8 +1,13 @@
-h1 Show User
+extends ./layouts/commons.pug
 
-ul
-    each user in users
-        li
-            span= user.name
-            span &nbsp;
-            a(href='/users/' + user.id) View
+block content
+    .container
+        h1 Show User
+        
+        ul(class="list-group")
+            each user in users
+                li(class="list-group-item")
+                    span= user.name
+                    span &nbsp;
+                    img(src=user.image)
+                    button(type="button",class="btn btn-primary",href='/users/' + user.id) View
