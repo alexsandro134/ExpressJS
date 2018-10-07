@@ -4,7 +4,7 @@ block content
     .container
         h1 Show User
         
-        div.row
+        .row
             each user in users
                 .col.d-flex.flex-column.m-1.p-3
                     img(src=user.image)
@@ -12,6 +12,26 @@ block content
                     span= user.description
                     a.btn.btn-primary(href='/users/' + user.id) View
 
+        nav
+            if(pageCount > 1)
+                ul.pagination
+                    if(currentPage > 1)
+                        li.page-item
+                            a.page-link(href='/?page=1') &laquo;
+                        - var i = 1
+                        if(currentPage > 5)
+                            i = +currentPage - 4;
+                        for() {
+
+                        }
+                        li.page-item
+                            a.page-link(href='#') totalPage
+                        li.page-item
+                            a.page-link(href='#') 2
+                        li.page-item
+                            a.page-link(href='#') 3
+                        li.page-item
+                            a.page-link(href='#') 4
         //- table.table
         //-     tr
         //-         th Name

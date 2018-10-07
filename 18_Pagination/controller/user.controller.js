@@ -4,15 +4,36 @@ module.exports.getUsers = function (req, res) {
 
     var page = parseInt(req.query.page) || 1;
     var perPage = 8;
+    var currentPage;
 
     var start = (page - 1) * perPage;
     var end = page * perPage;
-
     var drop = (page - 1) * perPage;
+
+    var totalUsers = db.get('data').size().value();
+    var pageCount = Math.ceil(totalUsers / perPage);
+
+    var userArray = [];
+    var userList = [];
+
+    while (totalUsers.length > 0) {
+        userArray.push(totalUsers.splice(0, perPage));
+    }
+
+    if (typeof req.query.page !== 'undefined') {
+        currentPage = +req.query.page;
+    }
+
+    userList = userArray[+currentPage - 1];
 
     res.render('show.pug', {
         // users: db.get('data').value().slice(start, end)
-        users: db.get('data').drop(drop).take(perPage).value()
+        // users: db.get('data').drop(drop).take(perPage).value(),
+        user: userList,
+        perPage: perPage,
+        totalUsers: totalUsers,
+        pageCount: pageCount,
+        currentPage: currentPage
     });
 };
 
