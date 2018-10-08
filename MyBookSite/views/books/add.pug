@@ -1,9 +1,9 @@
-extends ./layouts/common
+extends ../layouts/common
 
 block content
     h2 Add my book
 
-    form(action="/books/add", method="POST", enctype="multipart/form-data")
+    form(action="/books/add", method="POST")
         .form-group
             label(for="name") Name
             input#name.form-control(name="name" ,type="text")
@@ -13,9 +13,9 @@ block content
         .form-group
             label(for="type") Type
             input#type.form-control(name="type" ,type="text")
-        .form-group
-            label(for="avatar") Image
-            input#avatar.form-control(name="avatar" ,type="file")
+        //- .form-group
+        //-     label(for="avatar") Image
+        //-     input#avatar.form-control(name="avatar" ,type="file")
         .form-group
             label(for="link") Link
             input#link.form-control(name="link" ,type="text")

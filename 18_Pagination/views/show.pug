@@ -4,34 +4,66 @@ block content
     .container
         h1 Show User
         
-        .row
-            each user in users
-                .col.d-flex.flex-column.m-1.p-3
-                    img(src=user.image)
-                    label= user.name
-                    span= user.description
-                    a.btn.btn-primary(href='/users/' + user.id) View
+        ul.list-group
+            each val in user
+                li.list-group-item= val.name
+        
+        if (pageCount > 1)
+        ul.pagination
+            if currentPage > 1
+                li
+                    a(href="/?page=1") &laquo;
+        
+        - var i = 1;
+        if (currentPage > 5)
+            i = currentPage - 4;
+        
+        if (i!==1)
+            li.disabled
+                a(href="#") ...
+        
+        - for (var i = 1; i <= pageCount; i++)
+            if(currentPage == i)
+                li.active
+                    span= i
+                        span.sr-only (current)
+            else
+                li
+                    a(href="/?page="+i+)= i
+                
+            if(i==(currentPage + 4))
+                li.disabled
+                    a(href="#") ...
 
-        nav
-            if(pageCount > 1)
-                ul.pagination
-                    if(currentPage > 1)
-                        li.page-item
-                            a.page-link(href='/?page=1') &laquo;
-                        - var i = 1
-                        if(currentPage > 5)
-                            i = +currentPage - 4;
-                        for() {
+            
+        //- .row
+        //-     each user in users
+        //-         .col.d-flex.flex-column.m-1.p-3
+        //-             img(src=user.image)
+        //-             label= user.name
+        //-             span= user.description
+        //-             a.btn.btn-primary(href='/users/' + user.id) View
 
-                        }
-                        li.page-item
-                            a.page-link(href='#') totalPage
-                        li.page-item
-                            a.page-link(href='#') 2
-                        li.page-item
-                            a.page-link(href='#') 3
-                        li.page-item
-                            a.page-link(href='#') 4
+        //- nav
+        //-     if(pageCount > 1)
+        //-         ul.pagination
+        //-             if(currentPage > 1)
+        //-                 li.page-item
+        //-                     a.page-link(href='/?page=1') &laquo;
+        //-                 - var i = 1
+        //-                 if(currentPage > 5)
+        //-                     i = +currentPage - 4;
+        //-                 for() {
+
+        //-                 }
+        //-                 li.page-item
+        //-                     a.page-link(href='#') totalPage
+        //-                 li.page-item
+        //-                     a.page-link(href='#') 2
+        //-                 li.page-item
+        //-                     a.page-link(href='#') 3
+        //-                 li.page-item
+        //-                     a.page-link(href='#') 4
         //- table.table
         //-     tr
         //-         th Name
