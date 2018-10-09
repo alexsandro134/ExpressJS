@@ -3,7 +3,7 @@ extends ../layouts/common
 block content
     h2 Add my book
 
-    form(action="/books/add", method="POST")
+    form(action="/books/add", method="POST", enctype="multipart/form-data")
         .form-group
             label(for="name") Name
             input#name.form-control(name="name" ,type="text")
@@ -11,11 +11,17 @@ block content
             label(for="author") Author
             input#author.form-control(name="author" ,type="text")
         .form-group
-            label(for="type") Type
-            input#type.form-control(name="type" ,type="text")
-        //- .form-group
-        //-     label(for="avatar") Image
-        //-     input#avatar.form-control(name="avatar" ,type="file")
+            label(for="selectform") Select type of books
+            select#selectform.form-control(name="type")
+                option(value="finance") Finance
+                option(value="novel") Novel
+                option(value="vn") Vietnam
+                option(value="skill") Skill
+            //- label(for="type") Type
+            //- input#type.form-control(name="type" ,type="text")
+        .form-group
+            label(for="cover") Image
+            input#cover.form-control(name="cover" ,type="file")
         .form-group
             label(for="link") Link
             input#link.form-control(name="link" ,type="text")

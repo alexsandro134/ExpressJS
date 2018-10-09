@@ -12,7 +12,7 @@ block content
                 th Name
                 th Author
                 th Type
-                //- th Image
+                th Cover
                 th Link
                 th Actions
         tbody
@@ -21,6 +21,9 @@ block content
                 td= book.name
                 td= book.author
                 td= book.type
-                td= book.link
+                td
+                    img(src=book.cover, width="64")
+                td
+                    a(href=book.link) Link
                 td
                     a.btn.btn-info(href="/books/" + book.id) View
