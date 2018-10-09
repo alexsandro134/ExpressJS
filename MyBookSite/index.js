@@ -20,7 +20,9 @@ app.use(express.static('public'));
 
 app.use('/books', bookRoute);
 app.use('/users', userRoute);
-
+app.get('/', function (req, res) {
+  res.send('abc');
+})
 app.listen(port, function () {
   console.log('App is running with port ' + port);
 });

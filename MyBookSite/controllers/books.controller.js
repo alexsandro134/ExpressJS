@@ -34,3 +34,14 @@ module.exports.postAdd = function (req, res) {
     db.get('books').push(req.body).write();
     res.redirect('/books');
 };
+
+module.exports.searchBook = function (req, res) {
+    var search = req.query.q;
+    var searchBook = db.get('books').find({
+        name: search
+    }).value();
+
+    res.render('books/index', {
+        books: searchBook
+    });
+};

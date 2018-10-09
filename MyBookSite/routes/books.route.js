@@ -15,6 +15,8 @@ router.get('/add', controller.add);
 
 router.get('/:bookId', controller.get);
 
+router.get('/search', controller.searchBook);
+
 router.post('/add', 
     upload.single('cover'), 
     controller.postAdd
