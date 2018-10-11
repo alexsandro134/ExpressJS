@@ -20,6 +20,7 @@ app.use(express.static('public'));
 
 app.use('/books', bookRoute);
 app.use('/users', userRoute);
+
 app.get('/', function (req, res) {
   res.send('abc');
 })

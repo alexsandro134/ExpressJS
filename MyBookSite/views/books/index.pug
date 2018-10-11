@@ -4,10 +4,12 @@ block content
 
     h2 List of my books
 
-    a.btn.btn-success(href="/books/add") Add new book
-    form.form-inline(action="/books/search", method="GET")
-        input.form-control(type="search", placeholder="search", name="q")
-        button.btn.btn-outline-success(type="submit") Search
+    .d-flex.align-items-center
+        a.btn.btn-success(href="/books/add") Add new book
+        
+        form.form-inline.ml-auto(action="/books/find", method="GET")
+            input.form-control(type="search", placeholder="search", name="q")
+            button.btn.btn-outline-success(type="submit") Search
 
     table.table
         thead.thead-light

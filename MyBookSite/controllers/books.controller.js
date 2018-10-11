@@ -29,7 +29,7 @@ module.exports.get = function (req, res) {
 
 module.exports.postAdd = function (req, res) {
     req.body.id = shortid.generate();
-    req.body.cover = req.file.path.split('\\').slice(1).join('\\');
+    req.body.cover = "/" + req.file.path.split("\\").slice(1).join("/");
 
     db.get('books').push(req.body).write();
     res.redirect('/books');
@@ -37,8 +37,8 @@ module.exports.postAdd = function (req, res) {
 
 module.exports.searchBook = function (req, res) {
     var search = req.query.q;
-    var searchBook = db.get('books').find({
-        name: search
+    var searchBook = db.get('books').filter({
+        author: search
     }).value();
 
     res.render('books/index', {
