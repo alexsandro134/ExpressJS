@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 
 var bookRoute = require('./routes/books.route');
 var userRoute = require('./routes/users.route');
+var apiBookRoute = require('./api/routes/books.route');
 
 var port = 3000;
 
@@ -20,6 +21,7 @@ app.use(express.static('public'));
 
 app.use('/books', bookRoute);
 app.use('/users', userRoute);
+app.use('/api/books', apiBookRoute);
 
 app.get('/', function (req, res) {
   res.send('abc');
