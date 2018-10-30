@@ -8,24 +8,31 @@
 // end = (n - 1) * x + x = n * x
 // items = array.slice(begin, end)
 
-var db = require('../db');
+// var db = require('../db');
+var Book = require('../models/book.model');
 var shortid = require('shortid');
 
 module.exports.index = function (req, res) {
-    var page = parseInt(req.query.page) || 1; // n
-    var perPage = 8; // x
- 
-    var start = (page - 1) * perPage;
-    var end = page * perPage;
+    // var page = parseInt(req.query.page) || 1; // n
+    // var perPage = 8; // x
 
-    var numOfProducts = db.get('books').size().value();
-    res.render('books/index', {
-        //books: db.get('books').value().slice(start, end)
+    // var start = (page - 1) * perPage;
+    // var end = page * perPage;
 
-        // using Lodash
-        books: db.get('books').drop(start).take(perPage).value(),
-        page: page,
-        total: numOfProducts
+    // var numOfProducts = db.get('books').size().value();
+    // res.render('books/index', {
+    //     //books: db.get('books').value().slice(start, end)
+
+    //     // using Lodash
+    //     books: db.get('books').drop(start).take(perPage).value(),
+    //     page: page,
+    //     total: numOfProducts
+    // });
+
+    Book.find().then(function (books) {
+        res.render('books/index', {
+            books: books
+        });
     });
 };
 
