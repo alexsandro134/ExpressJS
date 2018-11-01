@@ -12,11 +12,11 @@
 var Book = require('../models/book.model');
 var shortid = require('shortid');
 
-module.exports.index = function (req, res) {
-    // var page = parseInt(req.query.page) || 1; // n
-    // var perPage = 8; // x
+module.exports.index = async function (req, res) {
+    var page = parseInt(req.query.page) || 1; // n
+    var perPage = 8; // x
 
-    // var start = (page - 1) * perPage;
+    var start = (page - 1) * perPage;
     // var end = page * perPage;
 
     // var numOfProducts = db.get('books').size().value();
@@ -29,9 +29,16 @@ module.exports.index = function (req, res) {
     //     total: numOfProducts
     // });
 
-    Book.find().then(function (books) {
+    var numOfProducts;
+    await Book.count().then(function (count) {
+        numOfProducts = count;
+    });
+
+    await Book.find().skip(start).limit(perPage).then(function (books) {
         res.render('books/index', {
-            books: books
+            books: books,
+            page: page,
+            total: numOfProducts
         });
     });
 };
@@ -40,12 +47,12 @@ module.exports.add = function (req, res) {
     res.render('books/add');
 };
 
-module.exports.get = function (req, res) {
+module.exports.get = async function (req, res) {
     var bookId = req.params.bookId;
 
-    var book = db.get('books').find({
-        id: bookId
-    }).value();
+    var book = await Book.find({
+        _id: bookId
+    });
 
     res.render('books/view', {
         book: book
@@ -60,11 +67,11 @@ module.exports.postAdd = function (req, res) {
     res.redirect('/books');
 };
 
-module.exports.searchBook = function (req, res) {
+module.exports.searchBook = async function (req, res) {
     var search = req.query.q;
-    var searchBook = db.get('books').filter({
-        author: search
-    }).value();
+    var searchBook = await Book.find({
+        name: search
+    });
 
     res.render('books/index', {
         books: searchBook
